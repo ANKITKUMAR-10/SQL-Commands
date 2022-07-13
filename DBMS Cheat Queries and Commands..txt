@@ -1,0 +1,78 @@
+1.   show databases;
+     create database [db_name];
+     use [db_name]; 
+     drop databases [db_name];   -------> drop use for delete.
+
+
+2.   crate table [table_name] (id int(10) primary key , name varchar(100) not null);    ------> primary key for differnt id's  or varchar for string name , not null is use for compulsory.
+
+3.   show tables;           -----> showing table.
+ 
+4.   desc [table_name];     ------> describe table;
+
+5.   alter table [tb_name] rename to [tb_ new_name]    -------> to rename or edit the table name.
+
+6.   truncate table [table_name];      -------> truncate use for delete data only in table.
+
+7.   insert into [tb_name] values( id , 'name', 'city');         ------> Insert values in data.
+
+8.   select *from [tb_name];     -------->  show all the values to be insert.
+
+9.   alter table [tb_name] add country varchar(100);       -------> add column into table.
+
+10.  update [tb_name] set country='india' , sport='Cricket' where name='Kartik';     ------> update values in data which was null.
+     delete from [tb_name] where id= _ ;           ------> For delete data in table;
+
+11.  Where   --->  for condition.
+     *        ---> for ALL col.
+     distinct(column name)  ---> for different vlaue.
+     and , or   ---> for logical condition.                    eg-> ( select *from [tb_name] where id=1 or id=2; )
+     >= <= , between    ----> for range.                       eg-> ( select *from [tb_name] where id between 1 and 5) or (select *from [tb_name] where col >=1 and <=5; )
+     in(value)   ---> for To select particular data in table.  eg-> ( select *from [tb_name] where col in(1,2,4); )
+     limit      ----> for select no. of data in table.
+     offset     ----> for left data.                           eg-> ( select *from [tb_name] limit 2 offset 2; )
+     order by   ----> for arrange in accending order.
+     order by col desc  ----> for decending order.             eg-> ( select *from [tb_name] order by col desc; )  col means [coloumn_name] in table 
+    
+
+12.  select name as "username" , city as "Place" from data;       --------> TO search particular data from table.
+     select name,id,city from data;
+
+
+13.   like '%' or '_' ----> For many alphabet or single alphabet to search.         eg -----> ( select *from [tb_name] where col like 'alphabet%'; )  % is stand for many alphabet include zero.
+        for search data by their 2 alphabet.                                        eg -----> ( select *from [tb_name] where col like '_u%' ; )
+
+
+14.   SUM(col)    ----> For sum.
+      AVG(col)    ----> For Average.                                     eg-------> ( select SUM(col) as "SUM" , AVG(col) as "Average" , COUNT(col) as "Count" from [tb_name]; )
+      COUNT(col)  ----> for count.
+
+
+15.   MIN(col) or MAX(col)    ---> minimum or Maximum.                   eg------>  select name from [tb_name] where col = ( select MIN(col) from [tb_name] ) ;    -> Nested Query
+
+
+
+
+                                                             -----------  FOREIGN KEY & JOIN  -----------
+
+
+1.  The FOREIGN KEY constraint is a key used to link two tables together.
+
+     A FOREIGN KEY is a field (or collection of fields) in one table that refers to the PRIMARY KEY in another table.
+  
+
+2.  CREATE TABLE Orders (                 -----> Creates a FOREIGN KEY on the "PersonID" column when the "Orders" table is created.
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID) );
+
+ 
+3.  insert into order values(12 , 1 , [refernce_id from table 2]);        ---> add values in tables 2.
+
+
+4.  select [table_id1].name , [table_id1].city , Orders.orderNumber from [table_id1] , Orders where [tb_id1].id = orders.[table_id1]Id;        ------> Method 1.
+
+
+5.  select [table_id1].name , Orders.orderNumber from [table_id1] inner join Orders on [table_id1].id = Orders.[table_id1]Id;                  ------> Join table 1 & 2. Method 2
